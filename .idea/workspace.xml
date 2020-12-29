@@ -73,21 +73,8 @@
       <command value="mvn test" />
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AppTest.addQuoteTest">
-    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.App" />
-      <module name="GB_java_wut" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AppTest.addQuoteTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.AppTest.addMessageTest">
+    <configuration name="AppTest.addFaveTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="GB_java_wut" />
       <extension name="coverage">
         <pattern>
@@ -97,13 +84,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.example" />
       <option name="MAIN_CLASS_NAME" value="org.example.AppTest" />
-      <option name="METHOD_NAME" value="addQuoteTest" />
+      <option name="METHOD_NAME" value="addFaveTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TriangleTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AppTest.addGroupTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="GB_java_wut" />
       <extension name="coverage">
         <pattern>
@@ -112,29 +99,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.example" />
-      <option name="MAIN_CLASS_NAME" value="org.example.TriangleTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TriangleTest.triangleAreaTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="GB_java_wut" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example" />
-      <option name="MAIN_CLASS_NAME" value="org.example.TriangleTest" />
-      <option name="METHOD_NAME" value="triangleAreaTest(int,int,int,double)" />
+      <option name="MAIN_CLASS_NAME" value="org.example.AppTest" />
+      <option name="METHOD_NAME" value="addGroupTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TriangleTest.triangleAreaTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AppTest.addMessageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="GB_java_wut" />
       <extension name="coverage">
         <pattern>
@@ -143,8 +115,40 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.example" />
-      <option name="MAIN_CLASS_NAME" value="org.example.TriangleTest" />
-      <option name="METHOD_NAME" value="triangleAreaTest" />
+      <option name="MAIN_CLASS_NAME" value="org.example.AppTest" />
+      <option name="METHOD_NAME" value="addMessageTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CrmTest.createContactTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GB_java_wut" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.CrmTest" />
+      <option name="METHOD_NAME" value="createContactTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CrmTest.createProjectTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GB_java_wut" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.CrmTest" />
+      <option name="METHOD_NAME" value="createProjectTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -152,11 +156,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AppTest.addQuoteTest" />
-        <item itemvalue="JUnit.TriangleTest" />
-        <item itemvalue="JUnit.TriangleTest.triangleAreaTest (1)" />
-        <item itemvalue="Application.App" />
-        <item itemvalue="JUnit.TriangleTest.triangleAreaTest" />
+        <item itemvalue="JUnit.AppTest.addMessageTest" />
+        <item itemvalue="JUnit.AppTest.addGroupTest" />
+        <item itemvalue="JUnit.AppTest.addFaveTest" />
+        <item itemvalue="JUnit.CrmTest.createContactTest" />
+        <item itemvalue="JUnit.CrmTest.createProjectTest" />
       </list>
     </recent_temporary>
   </component>
@@ -184,26 +188,42 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1493" height="201" key="GridCell.Tab.0.bottom" timestamp="1608986907643">
+    <state width="1493" height="155" key="GridCell.Tab.0.bottom" timestamp="1609261839163">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1608986907643" />
-    <state width="1493" height="201" key="GridCell.Tab.0.center" timestamp="1608986907642">
+    <state width="1493" height="155" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609261839163" />
+    <state width="1493" height="155" key="GridCell.Tab.0.center" timestamp="1609261839163">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1608986907642" />
-    <state width="1493" height="201" key="GridCell.Tab.0.left" timestamp="1608986907642">
+    <state width="1493" height="155" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1609261839163" />
+    <state width="1493" height="155" key="GridCell.Tab.0.left" timestamp="1609261839162">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1608986907642" />
-    <state width="1493" height="201" key="GridCell.Tab.0.right" timestamp="1608986907642">
+    <state width="1493" height="155" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1609261839162" />
+    <state width="1493" height="155" key="GridCell.Tab.0.right" timestamp="1609261839163">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1608986907642" />
-    <state x="249" y="0" key="SettingsEditor" timestamp="1608909663946">
+    <state width="1493" height="155" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1609261839163" />
+    <state width="1493" height="93" key="GridCell.Tab.1.bottom" timestamp="1609260632971">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1608909663946" />
+    <state width="1493" height="93" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1609260632971" />
+    <state width="1493" height="93" key="GridCell.Tab.1.center" timestamp="1609260632971">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="93" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1609260632971" />
+    <state width="1493" height="93" key="GridCell.Tab.1.left" timestamp="1609260632971">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="93" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1609260632971" />
+    <state width="1493" height="93" key="GridCell.Tab.1.right" timestamp="1609260632971">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="93" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1609260632971" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1609261455439">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1609261455439" />
     <state x="379" y="38" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1608649962023">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

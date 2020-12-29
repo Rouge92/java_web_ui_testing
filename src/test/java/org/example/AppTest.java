@@ -62,14 +62,14 @@ public class AppTest {
         WebElement rewrite = driver.findElement(By.id("rewrite"));
         rewrite.click();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        Assertions.assertTrue(isElementPresent(By.linkText("Комментировать")), "Запись не добавлена.");
-        logger.info("Запись успешно добавлена.");
+        Assertions.assertTrue(isElementPresent(By.linkText("Комментировать")), "Запись не добавлена");
+        logger.info("Запись успешно добавлена");
         WebElement drop2 = driver.findElement(By.id("drop"));
         drop2.click();
         WebElement logout = driver.findElement(By.linkText("Выход"));
         new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(logout));
         logout.click();
-        logger.info("Выполнен выход.");
+        logger.info("Выполнен выход");
         driver.close();
     }
 
@@ -99,18 +99,94 @@ public class AppTest {
         new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(addQuote));
         addQuote.click();
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        Assertions.assertTrue(isElementPresent(By.linkText("Удалить из цитатника")), "Запись не процитирована.");
-        logger.info("Запись успешно процитирована.");
+        Assertions.assertTrue(isElementPresent(By.linkText("Удалить из цитатника")), "Запись не процитирована");
+        logger.info("Запись успешно процитирована");
         driver.get(LINK);
         WebElement drop2 = driver.findElement(By.id("drop"));
         drop2.click();
         WebElement logout = driver.findElement(By.linkText("Выход"));
         new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(logout));
         logout.click();
-        logger.info("Выполнен выход.");
+        logger.info("Выполнен выход");
         driver.close();
     }
 
+    @Test
+    @DisplayName("Добавление случайного дневника в избранное")
+    public void addFaveTest() {
+        getDriver();
+        Logger logger = Logger.getLogger(AppTest.class);
+        driver.get(LINK);
+        WebElement login = driver.findElement(By.id("drop-login"));
+        login.click();
+        WebElement userlog = driver.findElement(By.id("usrlog2"));
+        userlog.click();
+        userlog.sendKeys(LOGIN);
+        WebElement userpass = driver.findElement(By.id("usrpass2"));
+        userpass.click();
+        userpass.sendKeys(PASSWORD);
+        WebElement submit = driver.findElement(By.xpath("/html/body/div[2]/div/ul[2]/li[1]/div/form/button"));
+        submit.click();
+        logger.info("Вход выполнен успешно");
+        WebElement drop = driver.findElement(By.id("drop-common"));
+        drop.click();
+        WebElement random = driver.findElement(By.linkText("Случайный дневник"));
+        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(random));
+        random.click();
+        WebElement addFave = driver.findElement(By.linkText("Добавить в избранное"));
+        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(addFave));
+        addFave.click();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        Assertions.assertTrue(isElementPresent(By.linkText("Удалить из избранного")), "Не удалось добавить в избраное");
+        logger.info("Дневник добавлен в избранное");
+        driver.get(LINK);
+        WebElement drop2 = driver.findElement(By.id("drop"));
+        drop2.click();
+        WebElement logout = driver.findElement(By.linkText("Выход"));
+        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(logout));
+        logout.click();
+        logger.info("Выполнен выход");
+        driver.close();
+    }
+    @Test
+    @DisplayName("Вступление в сообщество")
+    public void addGroupTest() {
+        getDriver();
+        Logger logger = Logger.getLogger(AppTest.class);
+        driver.get(LINK);
+        WebElement login = driver.findElement(By.id("drop-login"));
+        login.click();
+        WebElement userlog = driver.findElement(By.id("usrlog2"));
+        userlog.click();
+        userlog.sendKeys(LOGIN);
+        WebElement userpass = driver.findElement(By.id("usrpass2"));
+        userpass.click();
+        userpass.sendKeys(PASSWORD);
+        WebElement submit = driver.findElement(By.xpath("/html/body/div[2]/div/ul[2]/li[1]/div/form/button"));
+        submit.click();
+        logger.info("Вход выполнен успешно");
+        WebElement drop = driver.findElement(By.id("drop-common"));
+        drop.click();
+        WebElement random = driver.findElement(By.linkText("Все сообщества"));
+        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(random));
+        random.click();
+        WebElement group = driver.findElement(By.xpath("/html/body/div[3]/div/div[1]/div[1]/div[2]/div[2]/div[1]/a[2]"));
+        group.click();
+        WebElement addGroup = driver.findElement(By.linkText("Вступить в сообщество"));
+        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(addGroup));
+        addGroup.click();
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        Assertions.assertTrue(isElementPresent(By.linkText("Написать в сообщество")), "Не удалось вступить в сообщество");
+        logger.info("Вступление в сообщество успешно");
+        driver.get(LINK);
+        WebElement drop2 = driver.findElement(By.id("drop"));
+        drop2.click();
+        WebElement logout = driver.findElement(By.linkText("Выход"));
+        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(logout));
+        logout.click();
+        logger.info("Выполнен выход");
+        driver.close();
+    }
     public static boolean isElementPresent(By by) {
         try {
             driver.findElement(by);
