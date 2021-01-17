@@ -1,5 +1,6 @@
 package org.example.Pages.Dairy.ru;
 
+import io.qameta.allure.Step;
 import org.example.Base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,7 @@ public class GroupsPage extends BasePage {
     @FindBy(xpath = "/html/body/div[3]/div/div[1]/div[1]/div[2]/div[3]/div[1]/a[2]")
     private WebElement randomGroup;
 
+    @Step("Клик на Сообщество")
     public SomeDairyPage clickRandomGroup (){
         randomGroup.click();
         return  new SomeDairyPage(driver);

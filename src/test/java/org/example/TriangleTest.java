@@ -8,9 +8,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 
+
 public class TriangleTest {
 
-    @Disabled
+    @Disabled(value = "не нужен")
     @ParameterizedTest
     @DisplayName("Площадь треугольника")
     @CsvSource({"3,3,3,3.897114317029974", "7,3,9,8.78564169540279"})

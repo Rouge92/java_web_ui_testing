@@ -1,7 +1,6 @@
 package org.example;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.log4j.Logger;
+import io.qameta.allure.Step;
 import org.example.Base.BasePage;
 import org.example.Base.BaseUiTest;
 import org.example.Enums.CounterSubMenuButtons;
@@ -15,10 +14,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.concurrent.TimeUnit;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Description;
 
 import static org.example.Common.Configuration.*;
 
@@ -26,10 +23,10 @@ public class CrmTest extends BaseUiTest {
 
     @Test
     @DisplayName("Создание проекта")
+    @Description("Создание проекта")
+    @Feature("Project")
     public void createProjectTest() {
-        Logger logger = Logger.getLogger(AppTest.class);
         crmLogin();
-        logger.info("Вход выполнен успешно");
         new CRMHomePage(driver)
                 .getNavigation()
                 .moveCursorTooNavigationTab(NavigationBarTabs.PROJECTS)
@@ -46,18 +43,15 @@ public class CrmTest extends BaseUiTest {
                 .selectContsctMain(189)
                 .clickSubmit()
                 .checkNewProject();
-        logger.info("Проект сохранен успешно");
         crmLogout();
-        logger.info("Вход выполнен успешно");
-        driver.close();
     }
 
     @Test
     @DisplayName("Создание контактного лица")
+    @Description("Создание контактного лица")
+    @Feature("Contacts")
     public void createContactTest() {
-        Logger logger = Logger.getLogger(AppTest.class);
         crmLogin();
-        logger.info("Вход выполнен успешно");
         new CRMHomePage(driver)
                 .getNavigation()
                 .moveCursorTooNavigationTab(NavigationBarTabs.COUNTER)
@@ -71,12 +65,10 @@ public class CrmTest extends BaseUiTest {
                 .enterJobTitle("PR менеджер")
                 .clickSubmit()
                 .checkNewContact();
-        logger.info("Контакт создан успешно");
         crmLogout();
-        logger.info("Вход выполнен успешно");
-        driver.close();
     }
 
+    @Step("Выполнен вход")
     public void crmLogin() {
         driver.get(LINK_CRM);
         new CRMLoginPage(driver)
@@ -85,7 +77,7 @@ public class CrmTest extends BaseUiTest {
                 .crmClickLoginButton();
         Assertions.assertTrue(BasePage.isElementPresent(By.id("progressbar")), "Не удалось выполнить вход");
     }
-
+    @Step("Выполнен выход")
     public void crmLogout() {
         new CRMHomePage(driver)
                 .clickUserMenu()

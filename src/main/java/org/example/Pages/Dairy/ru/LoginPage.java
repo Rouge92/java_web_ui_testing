@@ -20,7 +20,7 @@ public class LoginPage  extends BasePage {
 
     @FindBy (xpath= "/html/body/div[2]/div/ul[2]/li[1]/div/form/button")
     private WebElement logButton;
-    //TODO локатор
+
 
     public LoginPage enterLogin (String login){
         usrlog.sendKeys(login);

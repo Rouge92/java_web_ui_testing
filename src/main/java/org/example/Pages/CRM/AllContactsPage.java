@@ -1,5 +1,6 @@
 package org.example.Pages.CRM;
 
+import io.qameta.allure.Step;
 import org.example.Base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,11 +19,13 @@ public class AllContactsPage  extends BasePage {
         super(driver);
     }
 
+    @Step("Нажата кнопка Создать контактное лицо")
     public NewContactPage clickNewContact(){
         createContactButton.click();
         return new NewContactPage(driver);
     }
 
+    @Step("Контактное лицо сохранено")
     public AllContactsPage checkNewContact(){
         String message = wait10seconds.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='message']"))).getText();
         assertTrue(message.contains("Контактное лицо сохранено"));

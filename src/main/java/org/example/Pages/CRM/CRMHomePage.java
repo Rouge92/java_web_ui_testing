@@ -1,5 +1,6 @@
 package org.example.Pages.CRM;
 
+import io.qameta.allure.Step;
 import org.example.Base.BasePage;
 import org.example.Views.NavigationBar;
 import org.openqa.selenium.WebDriver;
@@ -16,11 +17,13 @@ public class CRMHomePage extends BasePage {
     @FindBy(className = "no-hash")
     private WebElement userLogout;
 
+    @Step("Клик меню пользователя")
     public CRMHomePage clickUserMenu() {
         userMenu.click();
         return this;
     }
 
+    @Step("Клик Выход")
     public CRMLoginPage clickUserLogout() {
         userLogout.click();
         return new CRMLoginPage(driver);

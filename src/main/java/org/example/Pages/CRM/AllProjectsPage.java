@@ -1,5 +1,6 @@
 package org.example.Pages.CRM;
 
+import io.qameta.allure.Step;
 import org.example.Base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,11 +18,13 @@ public class AllProjectsPage extends BasePage {
         super(driver);
     }
 
+    @Step("Нажата кнопка Создать проект")
     public NewProjectPage clickNewProject() {
         createProjectButton.click();
         return new NewProjectPage(driver);
     }
 
+    @Step("Проект сохранен")
     public AllProjectsPage checkNewProject() {
         String message = wait10seconds.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[class='message']"))).getText();
         assertTrue(message.contains("Проект сохранен"));
