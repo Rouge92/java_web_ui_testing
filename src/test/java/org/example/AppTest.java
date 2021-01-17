@@ -1,203 +1,98 @@
 package org.example;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.apache.log4j.Logger;
-import org.junit.Test;
-import org.junit.jupiter.api.AfterAll;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import org.example.Base.BasePage;
+import org.example.Base.BaseUiTest;
+import org.example.Pages.Dairy.ru.HomePage;
+import org.example.Pages.Dairy.ru.LoginPage;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.util.concurrent.TimeUnit;
 
-public class AppTest {
-    private static Logger logger;
-    public static WebDriver driver;
-    public static final String LINK = "https://www.diary.ru/";
-    public static final String LOGIN = "QA_2021";
-    public static final String PASSWORD = "e95a149db";
-    public static final String POST_TITLE = "Test message";
-    public static final String POST_MESSAGE = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,\n\n";
+import static org.example.Common.Configuration.*;
 
-    @BeforeAll
-    public static WebDriver getDriver() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        return driver;
-    }
 
+public class AppTest extends BaseUiTest {
 
     @Test
     @DisplayName("Добавление записи в дневник")
+    @Description("Добавление записи в дневник")
+    @Feature("Posting")
     public void addMessageTest() {
-        getDriver();
-        Logger logger = Logger.getLogger(AppTest.class);
-        driver.get(LINK);
-        WebElement login = driver.findElement(By.id("drop-login"));
-        login.click();
-        WebElement userlog = driver.findElement(By.id("usrlog2"));
-        userlog.click();
-        userlog.sendKeys(LOGIN);
-        WebElement userpass = driver.findElement(By.id("usrpass2"));
-        userpass.click();
-        userpass.sendKeys(PASSWORD);
-        WebElement submit = driver.findElement(By.xpath("/html/body/div[2]/div/ul[2]/li[1]/div/form/button"));
-        submit.click();
-        logger.info("Вход выполнен успешно.");
-        WebElement newpost = driver.findElement(By.className("i-menu-newpost"));
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(newpost));
-        newpost.click();
-        WebElement posttitle = driver.findElement(By.id("postTitle"));
-        posttitle.click();
-        posttitle.sendKeys(POST_TITLE);
-        WebElement message = driver.findElement(By.id("message"));
-        message.click();
-        message.sendKeys(POST_MESSAGE);
-        WebElement rewrite = driver.findElement(By.id("rewrite"));
-        rewrite.click();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        Assertions.assertTrue(isElementPresent(By.linkText("Комментировать")), "Запись не добавлена");
-        logger.info("Запись успешно добавлена");
-        WebElement drop2 = driver.findElement(By.id("drop"));
-        drop2.click();
-        WebElement logout = driver.findElement(By.linkText("Выход"));
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(logout));
-        logout.click();
-        logger.info("Выполнен выход");
-        driver.close();
+        daLogin();
+        new HomePage(driver)
+                .clickNewPostButton()
+                .enterTitle(POST_TITLE)
+                .enterMessage(POST_MESSAGE)
+                .clickPostButton()
+                .addPostCheck();
+        daLogout();
     }
 
     @Test
     @DisplayName("Добавление записи в цитатник")
+    @Description("Добавление записи в цитатник")
+    @Feature("Fave")
     public void addQuoteTest() {
-        getDriver();
-        Logger logger = Logger.getLogger(AppTest.class);
+        daLogin();
+        new HomePage(driver)
+                .clickDropCommonButton()
+                .clickRandomButton()
+                .clickAddQuoteButton()
+                .addQuoteCheck();
         driver.get(LINK);
-        WebElement login = driver.findElement(By.id("drop-login"));
-        login.click();
-        WebElement userlog = driver.findElement(By.id("usrlog2"));
-        userlog.click();
-        userlog.sendKeys(LOGIN);
-        WebElement userpass = driver.findElement(By.id("usrpass2"));
-        userpass.click();
-        userpass.sendKeys(PASSWORD);
-        WebElement submit = driver.findElement(By.xpath("/html/body/div[2]/div/ul[2]/li[1]/div/form/button"));
-        submit.click();
-        logger.info("Вход выполнен успешно");
-        WebElement drop = driver.findElement(By.id("drop-common"));
-        drop.click();
-        WebElement random = driver.findElement(By.linkText("Случайный дневник"));
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(random));
-        random.click();
-        WebElement addQuote = driver.findElement(By.linkText("В цитатник"));
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(addQuote));
-        addQuote.click();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        Assertions.assertTrue(isElementPresent(By.linkText("Удалить из цитатника")), "Запись не процитирована");
-        logger.info("Запись успешно процитирована");
-        driver.get(LINK);
-        WebElement drop2 = driver.findElement(By.id("drop"));
-        drop2.click();
-        WebElement logout = driver.findElement(By.linkText("Выход"));
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(logout));
-        logout.click();
-        logger.info("Выполнен выход");
-        driver.close();
+        daLogout();
     }
 
     @Test
     @DisplayName("Добавление случайного дневника в избранное")
+    @Description("Добавление случайного дневника в избранное")
+    @Feature("Fave")
     public void addFaveTest() {
-        getDriver();
-        Logger logger = Logger.getLogger(AppTest.class);
+        daLogin();
+        new HomePage(driver)
+                .clickDropCommonButton()
+                .clickRandomButton()
+                .clickAddFaveButton()
+                .addFaveCheck();
         driver.get(LINK);
-        WebElement login = driver.findElement(By.id("drop-login"));
-        login.click();
-        WebElement userlog = driver.findElement(By.id("usrlog2"));
-        userlog.click();
-        userlog.sendKeys(LOGIN);
-        WebElement userpass = driver.findElement(By.id("usrpass2"));
-        userpass.click();
-        userpass.sendKeys(PASSWORD);
-        WebElement submit = driver.findElement(By.xpath("/html/body/div[2]/div/ul[2]/li[1]/div/form/button"));
-        submit.click();
-        logger.info("Вход выполнен успешно");
-        WebElement drop = driver.findElement(By.id("drop-common"));
-        drop.click();
-        WebElement random = driver.findElement(By.linkText("Случайный дневник"));
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(random));
-        random.click();
-        WebElement addFave = driver.findElement(By.linkText("Добавить в избранное"));
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(addFave));
-        addFave.click();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        Assertions.assertTrue(isElementPresent(By.linkText("Удалить из избранного")), "Не удалось добавить в избраное");
-        logger.info("Дневник добавлен в избранное");
-        driver.get(LINK);
-        WebElement drop2 = driver.findElement(By.id("drop"));
-        drop2.click();
-        WebElement logout = driver.findElement(By.linkText("Выход"));
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(logout));
-        logout.click();
-        logger.info("Выполнен выход");
-        driver.close();
-    }
-    @Test
-    @DisplayName("Вступление в сообщество")
-    public void addGroupTest() {
-        getDriver();
-        Logger logger = Logger.getLogger(AppTest.class);
-        driver.get(LINK);
-        WebElement login = driver.findElement(By.id("drop-login"));
-        login.click();
-        WebElement userlog = driver.findElement(By.id("usrlog2"));
-        userlog.click();
-        userlog.sendKeys(LOGIN);
-        WebElement userpass = driver.findElement(By.id("usrpass2"));
-        userpass.click();
-        userpass.sendKeys(PASSWORD);
-        WebElement submit = driver.findElement(By.xpath("/html/body/div[2]/div/ul[2]/li[1]/div/form/button"));
-        submit.click();
-        logger.info("Вход выполнен успешно");
-        WebElement drop = driver.findElement(By.id("drop-common"));
-        drop.click();
-        WebElement random = driver.findElement(By.linkText("Все сообщества"));
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(random));
-        random.click();
-        WebElement group = driver.findElement(By.xpath("/html/body/div[3]/div/div[1]/div[1]/div[2]/div[2]/div[1]/a[2]"));
-        group.click();
-        WebElement addGroup = driver.findElement(By.linkText("Вступить в сообщество"));
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(addGroup));
-        addGroup.click();
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
-        Assertions.assertTrue(isElementPresent(By.linkText("Написать в сообщество")), "Не удалось вступить в сообщество");
-        logger.info("Вступление в сообщество успешно");
-        driver.get(LINK);
-        WebElement drop2 = driver.findElement(By.id("drop"));
-        drop2.click();
-        WebElement logout = driver.findElement(By.linkText("Выход"));
-        new WebDriverWait(driver, 3).until(ExpectedConditions.visibilityOf(logout));
-        logout.click();
-        logger.info("Выполнен выход");
-        driver.close();
-    }
-    public static boolean isElementPresent(By by) {
-        try {
-            driver.findElement(by);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
+        daLogout();
     }
 
-    @AfterAll
-    public static void driverQuit() {
-        driver.quit();
+    @Test
+    @DisplayName("Вступление в сообщество")
+    @Description("Вступление в сообщество")
+    @Feature("Groups")
+    public void addGroupTest() {
+        daLogin();
+        new HomePage(driver)
+                .clickDropCommonButton()
+                .clickGroupsButton()
+                .clickRandomGroup()
+                .clickJoinGroupButton()
+                .joinGroupCheck();
+        driver.get(LINK);
+        daLogout();
     }
+    @Step(value = "Выполнен вход")
+    public void daLogin() {
+        driver.get(LINK);
+        new LoginPage(driver)
+                .clickDropLoginButton()
+                .enterLogin(LOGIN)
+                .enterPass(PASSWORD)
+                .clickLoginButton();
+        Assertions.assertTrue(BasePage.isElementPresent(By.className("username")), "Неудалось выполнить вход");
+    }
+    @Step(value = "Выполнен выход")
+    public void daLogout() {
+        new HomePage(driver)
+                .clickDropCommon2Button()
+                .clickLogoutButton();
+        Assertions.assertTrue(BasePage.isElementPresent(By.id("loginform")), "Не удалось выполнить выход");
+    }
+
 }
